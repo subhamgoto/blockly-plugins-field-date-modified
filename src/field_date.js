@@ -206,6 +206,8 @@ class FieldDate extends Blockly.FieldTextInput {
 
 
     // Changes START
+    var myPicker = this.picker_;
+    var c_year = myPicker.activeMonth_.getFullYear();
     var data = "<select>";
     var currentYear =  (new Date()).getFullYear();
     for (var i = currentYear-50; i <= currentYear+50 ; i++) {
@@ -213,7 +215,7 @@ class FieldDate extends Blockly.FieldTextInput {
     }
     data+="</select>";
     data = this.createElementFromHTML(data);
-    var myPicker = this.picker_;
+    
     data.addEventListener('change', function() {
       var chosen_year = parseInt(this.value);
       var c_year = myPicker.activeMonth_.getFullYear();
@@ -232,6 +234,7 @@ class FieldDate extends Blockly.FieldTextInput {
       }
 
     });
+    data.value = c_year;
 
     this.picker_.getElement().prepend(data);
 
